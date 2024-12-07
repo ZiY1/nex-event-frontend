@@ -15,9 +15,11 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (credentials) => {
-    const success = await loginService(credentials);
-    setIsAuthenticated(true);
-    return success;
+    const result = await loginService(credentials);
+    if (result.success) {
+      setIsAuthenticated(true);
+    }
+    return result;
   };
 
   const logout = () => {
