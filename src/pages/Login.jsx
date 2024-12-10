@@ -1,20 +1,21 @@
-import * as React from "react";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import AppTheme from "../contexts/AppTheme";
-import { AuthContext } from "../contexts/AuthContext";
+import * as React from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+
 import AuthCard from "../components/AuthCard";
 import AuthContainer from "../components/AuthContainer";
-import { useContext } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import AppTheme from "../contexts/AppTheme";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -115,7 +116,7 @@ const Login = (props) => {
           </Box>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Typography sx={{ textAlign: "center" }}>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 component={RouterLink}
                 to="/register"

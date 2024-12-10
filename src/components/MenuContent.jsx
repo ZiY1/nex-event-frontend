@@ -1,13 +1,15 @@
-import React, { useEffect, useState, useCallback } from "react";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
+import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
+import Alert from "@mui/material/Alert"; // Import MUI Alert for error display
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
-import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
+import React, { useEffect, useState, useCallback } from "react";
+
 import { eventAPI } from "../services/api";
 
 const MenuContent = ({
@@ -21,6 +23,7 @@ const MenuContent = ({
   const [error, setError] = useState("");
 
   const getCurrentLocation = () => {
+    setError(""); // Clear any previous errors
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -43,6 +46,7 @@ const MenuContent = ({
   const getNearbyEvents = useCallback(async () => {
     setLoading(true);
     setEvents([]);
+    setError(""); // Clear previous errors
     try {
       const response = await eventAPI.getNearbyEvents(
         location.lat,
@@ -51,6 +55,7 @@ const MenuContent = ({
       setEvents(response.data.payload);
     } catch (error) {
       console.error("Error fetching events:", error);
+      setError("Failed to fetch nearby events. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -59,11 +64,13 @@ const MenuContent = ({
   const getFavoriteEvents = async () => {
     setLoading(true);
     setEvents([]);
+    setError(""); // Clear previous errors
     try {
       const response = await eventAPI.getFavoriteEvents();
       setEvents(response.data.payload);
     } catch (error) {
       console.error("Error fetching favorite events:", error);
+      setError("Failed to fetch favorite events. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -72,6 +79,7 @@ const MenuContent = ({
   const getRecommendedEvents = async () => {
     setLoading(true);
     setEvents([]);
+    setError(""); // Clear previous errors
     try {
       const response = await eventAPI.getRecommendEvents(
         location.lat,
@@ -80,6 +88,7 @@ const MenuContent = ({
       setEvents(response.data.payload);
     } catch (error) {
       console.error("Error fetching recommended events:", error);
+      setError("Failed to fetch recommended events. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -113,6 +122,12 @@ const MenuContent = ({
 
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
+      {/* Render error message if present */}
+      {error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )}
       <List dense>
         {mainListItems.map((item, index) => (
           <ListItem key={index} disablePadding sx={{ display: "block", mb: 1 }}>
