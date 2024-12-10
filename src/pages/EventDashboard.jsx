@@ -1,15 +1,15 @@
-import * as React from "react";
-
-import { alpha } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
+import { alpha } from "@mui/material/styles";
+import * as React from "react";
+import { useState } from "react";
+
 import AppNavbar from "../components/AppNavBar";
 import Header from "../components/Header";
 import MainGrid from "../components/MainGrid";
 import SideMenu from "../components/SideMenu";
 import AppTheme from "../contexts/AppTheme";
-import { useState } from "react";
 
 const EventDashboard = (props) => {
   const [selectedMenuIndex, setSelectedMenuIndex] = useState(0);

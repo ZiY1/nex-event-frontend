@@ -1,16 +1,17 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import MenuContent from "./MenuContent";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
-import { useNavigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import MenuContent from "./MenuContent";
 import { AuthContext } from "../contexts/AuthContext";
 
 const drawerWidth = 240;

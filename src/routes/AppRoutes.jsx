@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import ProtectedRoute from "./ProtectedRoute";
+import { AuthContext } from "../contexts/AuthContext";
+import EventDashboard from "../pages/EventDashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import ProtectedRoute from "./ProtectedRoute";
-import EventDashboard from "../pages/EventDashboard";
-import { AuthContext } from "../contexts/AuthContext";
 
 const AppRoutes = () => {
   const { isAuthenticated } = useContext(AuthContext);

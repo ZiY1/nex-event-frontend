@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import { inputsCustomizations } from "../styles/customizations/inputs";
 import { dataDisplayCustomizations } from "../styles/customizations/dataDisplay";
 import { feedbackCustomizations } from "../styles/customizations/feedback";
+import { inputsCustomizations } from "../styles/customizations/inputs";
 import { navigationCustomizations } from "../styles/customizations/navigation";
 import { surfacesCustomizations } from "../styles/customizations/surfaces";
 import {

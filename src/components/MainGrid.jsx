@@ -1,10 +1,11 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import EventCard from "./EventCard";
-import { eventAPI } from "../services/api";
+import * as React from "react";
 import { useState, useEffect } from "react";
+
+import EventCard from "./EventCard";
 import EventCardSkeleton from "./EventCardSkeleton";
+import { eventAPI } from "../services/api";
 
 const MainList = ({ events, loading }) => {
   const [favoriteEvents, setFavoriteEvents] = useState([]);

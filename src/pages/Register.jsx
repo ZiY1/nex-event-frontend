@@ -1,19 +1,20 @@
-import * as React from "react";
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import AppTheme from "../contexts/AppTheme";
+import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../services/authService";
+import { Link as RouterLink } from "react-router-dom";
+
 import AuthCard from "../components/AuthCard";
 import AuthContainer from "../components/AuthContainer";
-import { Link as RouterLink } from "react-router-dom";
+import AppTheme from "../contexts/AppTheme";
+import { register } from "../services/authService";
 
 const Register = (props) => {
   const navigate = useNavigate();
