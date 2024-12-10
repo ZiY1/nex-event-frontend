@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { register } from "../services/authService";
 import AuthCard from "../components/AuthCard";
 import AuthContainer from "../components/AuthContainer";
+import { Link as RouterLink } from "react-router-dom";
 
 const Register = (props) => {
   const navigate = useNavigate();
@@ -196,8 +197,13 @@ const Register = (props) => {
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Typography sx={{ textAlign: "center" }}>
               Already have an account?{" "}
-              <Link href="/login" variant="body2" sx={{ alignSelf: "center" }}>
-                Log in
+              <Link
+                component={RouterLink}
+                to="/login"
+                variant="body2"
+                sx={{ alignSelf: "center" }}
+              >
+                Login
               </Link>
             </Typography>
           </Box>

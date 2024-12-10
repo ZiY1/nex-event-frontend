@@ -5,15 +5,16 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
-import Link from "@mui/material/Link";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 import AppTheme from "../contexts/AppTheme";
-import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import AuthCard from "../components/AuthCard";
 import AuthContainer from "../components/AuthContainer";
 import { useContext } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -116,7 +117,8 @@ const Login = (props) => {
             <Typography sx={{ textAlign: "center" }}>
               Don't have an account?{" "}
               <Link
-                href="/register"
+                component={RouterLink}
+                to="/register"
                 variant="body2"
                 sx={{ alignSelf: "center" }}
               >

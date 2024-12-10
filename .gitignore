@@ -70,23 +70,3 @@ dist
 
 # Gatsby files
 .cache/
-
-# Comment out the following line if you want to include the build directory
-# /build
-
-# Comment out the following line if you want to include the coverage directory
-# /coverage
-
-# Comment out the following line if you want to include the node_modules directory
-# /node_modules
-
-# Comment out the following line if you want to include the pnp files
-# /.pnp
-# .pnp.js
-
-# Comment out the following line if you want to include the misc files
-# .DS_Store
-# .env.local
-# .env.development.local
-# .env.test.local
-# .env.production.local
