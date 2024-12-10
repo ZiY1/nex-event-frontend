@@ -34,7 +34,7 @@ const SideMenu = ({
   setLoading
 }) => {
   const navigate = useNavigate();
-  const {logout} = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const [fullName, setFullName] = useState(localStorage.getItem("fullName"));
 

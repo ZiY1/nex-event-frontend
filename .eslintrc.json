@@ -1,0 +1,36 @@
+{
+  "extends": [
+    "react-app", // Uses React-specific linting rules
+    "eslint:recommended", // Recommended ESLint rules
+    "plugin:react/recommended", // Additional React rules
+    "plugin:prettier/recommended" // Prettier integration
+  ],
+  "plugins": ["import"],
+  "rules": {
+    "prettier/prettier": "error", // Prettier issues are treated as errors
+    "react/prop-types": "off", // Disable prop-types rule (optional)
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          ["builtin", "external"], // Node.js and external packages
+          ["internal"], // Internal project imports
+          ["parent", "sibling", "index"], // Relative imports
+          ["type"] // Type imports (if using TypeScript)
+        ],
+        "newlines-between": "always", // Add newlines between groups
+        "alphabetize": {
+          "order": "asc", // Sort alphabetically
+          "caseInsensitive": true // Ignore case
+        }
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error", // Checks the Rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Automatically detect React version
+    }
+  }
+}

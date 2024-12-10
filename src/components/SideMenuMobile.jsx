@@ -22,7 +22,7 @@ const SideMenuMobile = ({
   setLoading
 }) => {
   const navigate = useNavigate();
-  const {logout} = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   const [fullName, setFullName] = useState(localStorage.getItem("fullName"));
 
   useEffect(() => {

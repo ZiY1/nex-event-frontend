@@ -15,7 +15,7 @@ const MenuContent = ({
   setSelectedMenuIndex,
   setSelectedMenuName,
   setEvents,
-  setLoading,
+  setLoading
 }) => {
   const [location, setLocation] = useState(null);
   const [error, setError] = useState("");
@@ -26,11 +26,13 @@ const MenuContent = ({
         (position) => {
           setLocation({
             lat: position.coords.latitude,
-            lon: position.coords.longitude,
+            lon: position.coords.longitude
           });
         },
         () => {
-          setError("Unable to get your location. Please enable location services.");
+          setError(
+            "Unable to get your location. Please enable location services."
+          );
         }
       );
     } else {
@@ -42,7 +44,10 @@ const MenuContent = ({
     setLoading(true);
     setEvents([]);
     try {
-      const response = await eventAPI.getNearbyEvents(location.lat, location.lon);
+      const response = await eventAPI.getNearbyEvents(
+        location.lat,
+        location.lon
+      );
       setEvents(response.data.payload);
     } catch (error) {
       console.error("Error fetching events:", error);
@@ -68,7 +73,10 @@ const MenuContent = ({
     setLoading(true);
     setEvents([]);
     try {
-      const response = await eventAPI.getRecommendEvents(location.lat, location.lon);
+      const response = await eventAPI.getRecommendEvents(
+        location.lat,
+        location.lon
+      );
       setEvents(response.data.payload);
     } catch (error) {
       console.error("Error fetching recommended events:", error);
@@ -79,8 +87,16 @@ const MenuContent = ({
 
   const mainListItems = [
     { text: "Nearby", icon: <NearMeRoundedIcon />, action: getNearbyEvents },
-    { text: "Favorites", icon: <FavoriteRoundedIcon />, action: getFavoriteEvents },
-    { text: "Recommendations", icon: <ThumbUpRoundedIcon />, action: getRecommendedEvents },
+    {
+      text: "Favorites",
+      icon: <FavoriteRoundedIcon />,
+      action: getFavoriteEvents
+    },
+    {
+      text: "Recommendations",
+      icon: <ThumbUpRoundedIcon />,
+      action: getRecommendedEvents
+    }
   ];
 
   useEffect(() => {

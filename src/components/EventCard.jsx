@@ -1,11 +1,11 @@
-import React from "react";
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
-import Box from "@mui/material/Box";
-import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
+import Typography from "@mui/material/Typography";
+import React from "react";
 
 const EventCard = ({ event, toggleFavorite }) => {
   return (

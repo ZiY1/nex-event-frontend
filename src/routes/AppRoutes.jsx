@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from '../pages/Login';
-import Register from '../pages/Register';
-import ProtectedRoute from './ProtectedRoute';
-import EventDashboard from '../pages/EventDashboard';
-import { AuthContext } from '../contexts/AuthContext';
+import React, { useContext } from "react";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import ProtectedRoute from "./ProtectedRoute";
+import EventDashboard from "../pages/EventDashboard";
+import { AuthContext } from "../contexts/AuthContext";
 
 const AppRoutes = () => {
   const { isAuthenticated } = useContext(AuthContext);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route
@@ -30,7 +30,7 @@ const AppRoutes = () => {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

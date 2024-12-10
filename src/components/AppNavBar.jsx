@@ -1,15 +1,16 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
+import LocalActivityRoundedIcon from "@mui/icons-material/LocalActivityRounded";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import MuiToolbar from "@mui/material/Toolbar";
+import { styled } from "@mui/material/styles";
 import { tabsClasses } from "@mui/material/Tabs";
+import MuiToolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import LocalActivityRoundedIcon from "@mui/icons-material/LocalActivityRounded";
-import SideMenuMobile from "./SideMenuMobile";
+import * as React from "react";
+
 import MenuButton from "./MenuButton";
+import SideMenuMobile from "./SideMenuMobile";
 
 const Toolbar = styled(MuiToolbar)({
   width: "100%",

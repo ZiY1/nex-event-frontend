@@ -20,7 +20,7 @@ const EventCardSkeleton = () => {
           display: "flex",
           flexDirection: "row",
           flexGrow: 1,
-          alignItems: "center",
+          alignItems: "center"
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
@@ -34,10 +34,9 @@ const EventCardSkeleton = () => {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            gap: 4,
+            gap: 4
           }}
-        >
-        </Box>
+        ></Box>
       </CardContent>
     </Card>
   );
