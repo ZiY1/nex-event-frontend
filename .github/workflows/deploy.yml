@@ -1,4 +1,4 @@
-name: Deploy React App to GitHub Pages
+name: "ci: deploy react app to GitHub pages"
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: github-pages # Ensure this matches the environment where the secret is stored
 
     steps:
       - name: Checkout repository
