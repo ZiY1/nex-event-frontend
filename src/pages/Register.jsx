@@ -103,7 +103,7 @@ const Register = (props) => {
                 {alert.message}
                 {alert.severity === "success" && (
                   <Typography variant="body2" sx={{ mt: 1 }}>
-                    Redirecting in {countdown} seconds... or{" "}
+                    Redirecting to login in {countdown} seconds... or{" "}
                     <Link href="/login" onClick={() => navigate("/login")}>
                       click here to redirect now
                     </Link>

@@ -4,6 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
+import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import React from "react";
 
@@ -28,7 +29,16 @@ const EventCard = ({ event, toggleFavorite }) => {
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="h6">{event.name}</Typography>
+          <Typography variant="h6">
+            <Link
+              href={event.url}
+              color="inherit"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {event.name}
+            </Link>
+          </Typography>
           <Typography variant="body2" color="text.secondary">
             Category: {event.categories.join(", ")}
           </Typography>
