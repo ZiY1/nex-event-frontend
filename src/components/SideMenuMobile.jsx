@@ -20,7 +20,8 @@ const SideMenuMobile = ({
   setSelectedMenuIndex,
   setSelectedMenuName,
   setEvents,
-  setLoading
+  setLoading,
+  setError
 }) => {
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
@@ -91,6 +92,7 @@ const SideMenuMobile = ({
             setSelectedMenuName={setSelectedMenuName}
             setEvents={setEvents}
             setLoading={setLoading}
+            setError={setError}
           />
           <Divider />
         </Stack>

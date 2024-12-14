@@ -16,7 +16,7 @@ const EventDashboard = (props) => {
   const [selectedMenuName, setSelectedMenuName] = useState("Nearby");
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [error, setError] = useState(null);
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
@@ -27,6 +27,7 @@ const EventDashboard = (props) => {
           setSelectedMenuName={setSelectedMenuName}
           setEvents={setEvents}
           setLoading={setLoading}
+          setError={setError}
         />
         <AppNavbar
           selectedMenuIndex={selectedMenuIndex}
@@ -34,6 +35,7 @@ const EventDashboard = (props) => {
           setSelectedMenuName={setSelectedMenuName}
           setEvents={setEvents}
           setLoading={setLoading}
+          setError={setError}
         />
         {/* Main content */}
         <Box
@@ -56,7 +58,7 @@ const EventDashboard = (props) => {
             }}
           >
             <Header selectedMenuName={selectedMenuName} />
-            <MainGrid events={events} loading={loading} />
+            <MainGrid events={events} loading={loading} error={error} />
           </Stack>
         </Box>
       </Box>

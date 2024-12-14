@@ -32,7 +32,8 @@ const SideMenu = ({
   setSelectedMenuIndex,
   setSelectedMenuName,
   setEvents,
-  setLoading
+  setLoading,
+  setError
 }) => {
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
@@ -101,12 +102,18 @@ const SideMenu = ({
         </Box>
       </Stack>
       <Divider />
+      {/* {error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )} */}
       <MenuContent
         selectedMenuIndex={selectedMenuIndex}
         setSelectedMenuIndex={setSelectedMenuIndex}
         setSelectedMenuName={setSelectedMenuName}
         setEvents={setEvents}
         setLoading={setLoading}
+        setError={setError}
       />
       <Divider />
       <Stack sx={{ p: 2 }}>

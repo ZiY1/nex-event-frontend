@@ -1,7 +1,7 @@
+/* eslint-disable no-unused-vars */
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
 import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
-import Alert from "@mui/material/Alert"; // Import MUI Alert for error display
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -17,10 +17,10 @@ const MenuContent = ({
   setSelectedMenuIndex,
   setSelectedMenuName,
   setEvents,
-  setLoading
+  setLoading,
+  setError
 }) => {
   const [location, setLocation] = useState(null);
-  const [error, setError] = useState("");
 
   const getCurrentLocation = () => {
     setError(""); // Clear any previous errors
@@ -108,26 +108,20 @@ const MenuContent = ({
     }
   ];
 
-  useEffect(() => {
-    if (selectedMenuIndex === 0) {
-      getCurrentLocation();
-    }
-  }, [selectedMenuIndex]);
+  // useEffect(() => {
+  //   if (selectedMenuIndex === 0) {
+  //     getCurrentLocation();
+  //   }
+  // }, [selectedMenuIndex]);
 
-  useEffect(() => {
-    if (location && selectedMenuIndex === 0) {
-      getNearbyEvents();
-    }
-  }, [location, selectedMenuIndex, getNearbyEvents]);
+  // useEffect(() => {
+  //   if (location && selectedMenuIndex === 0) {
+  //     getNearbyEvents();
+  //   }
+  // }, [location, selectedMenuIndex, getNearbyEvents]);
 
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
-      {/* Render error message if present */}
-      {error && (
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-      )}
       <List dense>
         {mainListItems.map((item, index) => (
           <ListItem key={index} disablePadding sx={{ display: "block", mb: 1 }}>

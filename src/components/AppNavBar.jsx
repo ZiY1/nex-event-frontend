@@ -58,7 +58,8 @@ const AppNavbar = ({
   setSelectedMenuIndex,
   setSelectedMenuName,
   setEvents,
-  setLoading
+  setLoading,
+  setError
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -114,6 +115,7 @@ const AppNavbar = ({
             setSelectedMenuName={setSelectedMenuName}
             setEvents={setEvents}
             setLoading={setLoading}
+            setError={setError}
           />
         </Stack>
       </Toolbar>
