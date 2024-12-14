@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import NearMeRoundedIcon from "@mui/icons-material/NearMeRounded";
 import ThumbUpRoundedIcon from "@mui/icons-material/ThumbUpRounded";
@@ -22,8 +21,8 @@ const MenuContent = ({
 }) => {
   const [location, setLocation] = useState(null);
 
-  const getCurrentLocation = () => {
-    setError(""); // Clear any previous errors
+  const getCurrentLocation = useCallback(() => {
+    setError("");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -41,12 +40,16 @@ const MenuContent = ({
     } else {
       setError("Geolocation is not supported by your browser");
     }
-  };
+  }, [setError, setLocation]);
 
-  const getNearbyEvents = useCallback(async () => {
+  useEffect(() => {
+    getCurrentLocation(); // Call once on mount
+  }, [getCurrentLocation]);
+
+  const getNearbyEvents = async () => {
     setLoading(true);
     setEvents([]);
-    setError(""); // Clear previous errors
+    setError("");
     try {
       const response = await eventAPI.getNearbyEvents(
         location.lat,
@@ -59,12 +62,12 @@ const MenuContent = ({
     } finally {
       setLoading(false);
     }
-  }, [location, setEvents, setLoading]);
+  };
 
   const getFavoriteEvents = async () => {
     setLoading(true);
     setEvents([]);
-    setError(""); // Clear previous errors
+    setError("");
     try {
       const response = await eventAPI.getFavoriteEvents();
       setEvents(response.data.payload);
@@ -79,7 +82,7 @@ const MenuContent = ({
   const getRecommendedEvents = async () => {
     setLoading(true);
     setEvents([]);
-    setError(""); // Clear previous errors
+    setError("");
     try {
       const response = await eventAPI.getRecommendEvents(
         location.lat,
@@ -95,7 +98,14 @@ const MenuContent = ({
   };
 
   const mainListItems = [
-    { text: "Nearby", icon: <NearMeRoundedIcon />, action: getNearbyEvents },
+    {
+      text: "Nearby",
+      icon: <NearMeRoundedIcon />,
+      action: () => {
+        getCurrentLocation();
+        getNearbyEvents();
+      }
+    },
     {
       text: "Favorites",
       icon: <FavoriteRoundedIcon />,
@@ -104,21 +114,12 @@ const MenuContent = ({
     {
       text: "Recommendations",
       icon: <ThumbUpRoundedIcon />,
-      action: getRecommendedEvents
+      action: () => {
+        getCurrentLocation();
+        getRecommendedEvents();
+      }
     }
   ];
-
-  // useEffect(() => {
-  //   if (selectedMenuIndex === 0) {
-  //     getCurrentLocation();
-  //   }
-  // }, [selectedMenuIndex]);
-
-  // useEffect(() => {
-  //   if (location && selectedMenuIndex === 0) {
-  //     getNearbyEvents();
-  //   }
-  // }, [location, selectedMenuIndex, getNearbyEvents]);
 
   return (
     <Stack sx={{ flexGrow: 1, p: 1, justifyContent: "space-between" }}>
