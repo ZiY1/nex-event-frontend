@@ -83,12 +83,9 @@ const SideMenu = ({
           borderColor: "divider"
         }}
       >
-        <Avatar
-          sizes="small"
-          alt={fullName}
-          src="/static/images/avatar/7.jpg"
-          sx={{ width: 36, height: 36 }}
-        />
+        <Avatar sizes="small" alt={fullName} sx={{ width: 36, height: 36 }}>
+          {fullName ? fullName.charAt(0) : ""}
+        </Avatar>
         <Box sx={{ mr: "auto" }}>
           <Typography
             variant="body2"
@@ -102,11 +99,6 @@ const SideMenu = ({
         </Box>
       </Stack>
       <Divider />
-      {/* {error && (
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-      )} */}
       <MenuContent
         selectedMenuIndex={selectedMenuIndex}
         setSelectedMenuIndex={setSelectedMenuIndex}

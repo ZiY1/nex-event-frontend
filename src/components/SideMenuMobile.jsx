@@ -73,12 +73,9 @@ const SideMenuMobile = ({
             direction="row"
             sx={{ gap: 1, alignItems: "center", flexGrow: 1, p: 1 }}
           >
-            <Avatar
-              sizes="small"
-              alt={fullName}
-              src="/static/images/avatar/7.jpg"
-              sx={{ width: 24, height: 24 }}
-            />
+            <Avatar sizes="small" alt={fullName} sx={{ width: 36, height: 36 }}>
+              {fullName ? fullName.charAt(0) : ""}
+            </Avatar>
             <Typography component="p" variant="h6">
               {fullName}
             </Typography>
