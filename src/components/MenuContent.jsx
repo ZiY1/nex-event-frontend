@@ -21,50 +21,32 @@ const MenuContent = ({
 }) => {
   const [location, setLocation] = useState(null);
 
-  const getCurrentLocation = useCallback(() => {
-    setError("");
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            lon: position.coords.longitude
-          });
-        },
-        () => {
-          setError(
-            "Unable to get your location. Please enable location services."
-          );
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by your browser");
-    }
-  }, [setError, setLocation]);
+  const getNearbyEvents = useCallback(
+    async (currentLocation) => {
+      if (!currentLocation) {
+        setError("Location is not available. Please enable location services.");
+        return;
+      }
+      setLoading(true);
+      setEvents([]);
+      setError("");
+      try {
+        const response = await eventAPI.getNearbyEvents(
+          currentLocation.lat,
+          currentLocation.lon
+        );
+        setEvents(response.data.payload);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+        setError("Failed to fetch nearby events. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    },
+    [setEvents, setLoading, setError]
+  );
 
-  useEffect(() => {
-    getCurrentLocation(); // Call once on mount
-  }, [getCurrentLocation]);
-
-  const getNearbyEvents = async () => {
-    setLoading(true);
-    setEvents([]);
-    setError("");
-    try {
-      const response = await eventAPI.getNearbyEvents(
-        location.lat,
-        location.lon
-      );
-      setEvents(response.data.payload);
-    } catch (error) {
-      console.error("Error fetching events:", error);
-      setError("Failed to fetch nearby events. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getFavoriteEvents = async () => {
+  const getFavoriteEvents = useCallback(async () => {
     setLoading(true);
     setEvents([]);
     setError("");
@@ -77,9 +59,13 @@ const MenuContent = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [setEvents, setLoading, setError]);
 
-  const getRecommendedEvents = async () => {
+  const getRecommendedEvents = useCallback(async () => {
+    if (!location) {
+      setError("Location is not available. Please enable location services.");
+      return;
+    }
     setLoading(true);
     setEvents([]);
     setError("");
@@ -95,7 +81,34 @@ const MenuContent = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [location, setEvents, setLoading, setError]);
+
+  const getCurrentLocation = useCallback(() => {
+    setError("");
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const newLocation = {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude
+          };
+          setLocation(newLocation);
+          getNearbyEvents(newLocation);
+        },
+        () => {
+          setError(
+            "Unable to get your location. Please enable location services."
+          );
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by your browser");
+    }
+  }, [setError, getNearbyEvents]);
+
+  useEffect(() => {
+    getCurrentLocation(); // Call once on mount to get location and fetch nearby events
+  }, [getCurrentLocation]);
 
   const mainListItems = [
     {
@@ -103,7 +116,7 @@ const MenuContent = ({
       icon: <NearMeRoundedIcon />,
       action: () => {
         getCurrentLocation();
-        getNearbyEvents();
+        getNearbyEvents(location);
       }
     },
     {
