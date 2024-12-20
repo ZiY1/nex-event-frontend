@@ -1,15 +1,20 @@
 import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import * as React from "react";
 import { useState, useEffect } from "react";
 
 import EventCard from "./EventCard";
+import EventCardMobile from "./EventCardMobile";
 import EventCardSkeleton from "./EventCardSkeleton";
 import { eventAPI } from "../services/api";
 
 const MainList = ({ events, loading, error }) => {
   const [favoriteEvents, setFavoriteEvents] = useState([]);
+
+  // Determine screen size
+  const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   useEffect(() => {
     setFavoriteEvents(events);
@@ -50,13 +55,21 @@ const MainList = ({ events, loading, error }) => {
         </Stack>
       ) : favoriteEvents.length > 0 ? (
         <Stack spacing={2}>
-          {favoriteEvents.map((event) => (
-            <EventCard
-              key={event.id}
-              event={event}
-              toggleFavorite={toggleFavorite}
-            />
-          ))}
+          {favoriteEvents.map((event) =>
+            isMobile ? (
+              <EventCardMobile
+                key={event.id}
+                event={event}
+                toggleFavorite={toggleFavorite}
+              />
+            ) : (
+              <EventCard
+                key={event.id}
+                event={event}
+                toggleFavorite={toggleFavorite}
+              />
+            )
+          )}
         </Stack>
       ) : (
         events.length === 0 && (
