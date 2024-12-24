@@ -1,4 +1,4 @@
-import { authAPI } from "./api";
+import { authAPI } from "./authAPI";
 import { setAuthCredentials } from "../utils/auth";
 
 export const login = async (credentials) => {
