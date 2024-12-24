@@ -104,7 +104,7 @@ const Register = (props) => {
                 {alert.severity === "success" && (
                   <Typography variant="body2" sx={{ mt: 1 }}>
                     Redirecting to login in {countdown} seconds... or{" "}
-                    <Link href="/login" onClick={() => navigate("/login")}>
+                    <Link component={RouterLink} to="/login">
                       click here to redirect now
                     </Link>
                     .

@@ -38,5 +38,3 @@ export const eventAPI = {
   getRecommendEvents: (lat, lon) =>
     api.get(`/events/recommend?lat=${lat}&lon=${lon}`)
 };
-
-export default api;
