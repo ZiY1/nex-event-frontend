@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import * as React from "react";
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 
 import MenuContent from "./MenuContent";
 import { AuthContext } from "../contexts/AuthContext";
@@ -23,7 +22,6 @@ const SideMenuMobile = ({
   setLoading,
   setError
 }) => {
-  const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const [fullName, setFullName] = useState(localStorage.getItem("fullName"));
 
@@ -42,8 +40,6 @@ const SideMenuMobile = ({
   const handleLogout = async () => {
     try {
       await logout();
-      console.log("Navigating to /login");
-      navigate("/login");
     } catch (error) {
       console.error("Error during logout:", error);
     }

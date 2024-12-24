@@ -9,7 +9,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import React, { useEffect, useState, useCallback } from "react";
 
-import { eventAPI } from "../services/api";
+import { eventAPI } from "../services/eventAPI";
 
 const MenuContent = ({
   selectedMenuIndex,

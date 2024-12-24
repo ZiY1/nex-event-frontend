@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import EventCard from "./EventCard";
 import EventCardMobile from "./EventCardMobile";
 import EventCardSkeleton from "./EventCardSkeleton";
-import { eventAPI } from "../services/api";
+import { eventAPI } from "../services/eventAPI";
 
 const MainList = ({ events, loading, error }) => {
   const [favoriteEvents, setFavoriteEvents] = useState([]);

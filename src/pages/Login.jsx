@@ -9,7 +9,6 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom";
 
 import AuthCard from "../components/AuthCard";
@@ -18,7 +17,6 @@ import AppTheme from "../contexts/AppTheme";
 import { AuthContext } from "../contexts/AuthContext";
 
 const Login = (props) => {
-  const navigate = useNavigate();
   const { login } = useContext(AuthContext);
   const [credentials, setCredentials] = React.useState({
     userId: "",
@@ -47,9 +45,7 @@ const Login = (props) => {
     if (!validateInputs()) return;
 
     const result = await login(credentials);
-    if (result.success) {
-      navigate("/events");
-    } else {
+    if (!result.success) {
       setAlert({
         severity: "error",
         message: result.message
